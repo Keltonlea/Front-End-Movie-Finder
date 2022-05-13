@@ -1,0 +1,13 @@
+header h1 {
+  
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+}
+
+.btn-primary {
+
+    display: flex;
+    border-color:rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right,rgb(230, 153, 82), rgb(237, 97, 9)); 
+    }
