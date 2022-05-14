@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(249, 247, 243) !important;
+    text-align: center !important;
+}
+
 header h1 {
   
     font-family: 'racing sans one';
@@ -11,3 +16,69 @@ header h1 {
     font-family: 'racing sans one';
     background-image: linear-gradient(to right,rgb(230, 153, 82), rgb(237, 97, 9)); 
     }
+
+    
+
+ul {
+    list-style-type: none;
+}
+
+#card-title {
+    font-size: 200%;
+}
+
+
+
+@media screen and (max-width:1200px ) {
+    
+    header h1{
+        justify-content: center;
+    }
+
+    .container .row {
+        justify-content: center;
+    }
+
+    .bg-warning {
+        width:250% !important;
+        margin-left: -100px !important;
+    }
+
+    .btn-primary{
+        width:50% !important;
+    }
+    #past-search-buttons {
+        width:100%;
+    }
+
+#search-button {
+    width:100% !important;
+}
+  #clear-button {
+      width:100% !important;
+  }
+}
+
+@media screen and (max-width:900px ) {
+    
+    header h1{
+        justify-content: center;
+    }
+
+    .container .row {
+        justify-content: center;
+    }
+
+    .bg-warning {
+        width:250% !important;
+      
+    }
+
+    #search-button {
+        width:100% !important;
+    }
+      #clear-button {
+          width:100% !important;
+      }
+
+}
