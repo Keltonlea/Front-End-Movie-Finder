@@ -2,11 +2,14 @@ var clearButton = document.querySelector("#clear-button");
 var userMovie = document.getElementById('movie-input');
 var pastSearchButtons = document.querySelector("#past-search-buttons");
 var modalContainer = document.getElementById('#myModal');
+var trailerModal = document.querySelector('.trailer');
+var closeTrailer = document.querySelector('.close-trailer');
 var movies = [];
 var pURL = "http://img.omdbapi.com/?"
 var pMovie = "i="
 var poster = "&h=600&"
 var pApi = "apikey=9279f439"
+var movie = "t="
 
 //get movie, save to local storage, make buttons, otherwise show modal popup to enter movie title//
 var formSubmitHandler = function () {
@@ -16,10 +19,12 @@ var formSubmitHandler = function () {
         movies.unshift({ movie });
         movie.value = "";
         pastSearch(movie);
+        callmovie
 
     } else {
         $('#myModal').modal('show');
         $('ul li').remove();
+        $('#moviePoster').remove();
 
 
         // console.log("yay")
@@ -102,9 +107,22 @@ document.getElementById('search-button').addEventListener('click', function (eve
 })
 
 
+
+
+
 clearButton.addEventListener("click", function () {
     localStorage.clear();
     document.querySelector(".past-search").innerHTML = ""
 })
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);
+
+trailerModal.addEventListener("click", function() {
+    $('#myTrailerModal').modal('show');
+
+})
+
+closeTrailer.addEventListener("click", function() {
+    $('#myTrailerModal').modal('hide');
+
+})
