@@ -55,7 +55,7 @@ var pastSearchHandler = function(event){
 
 
 //fetch
-var baseURL = "http://www.omdbapi.com/?";
+var baseURL = "https://www.omdbapi.com/?";
 var api = "apikey=9279f439&"
 var movie = "t="
 // var movieTitle = "John Wick"
