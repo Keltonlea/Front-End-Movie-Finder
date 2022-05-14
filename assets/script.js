@@ -7,6 +7,8 @@ var pURL = "http://img.omdbapi.com/?"
 var pMovie = "i="
 var poster = "&h=600&"
 var pApi = "apikey=9279f439"
+var trailerModal = document.querySelector('.trailer');
+var closeTrailer = document.querySelector('.close-trailer');
 
 //get movie, save to local storage, make buttons, otherwise show modal popup to enter movie title//
 var formSubmitHandler = function () {
@@ -20,7 +22,8 @@ var formSubmitHandler = function () {
     } else {
         $('#myModal').modal('show');
         $('ul li').remove();
-
+        $('#moviePoster').remove();
+        callMovie()
 
         // console.log("yay")
     }
@@ -75,21 +78,30 @@ function callMovie(userInput) {
             document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]);
             document.getElementById("list-group-item-E").innerHTML = JSON.stringify(data.Ratings[2]);
             moviePoster(data.imdbID);
+            imdbTrailer(IbaseURL + data.imdbID);
         });
 }
-function moviePoster(imdb) {
+async function moviePoster(imdb) {
 
-    fetch(pURL + pMovie + imdb + poster + pApi)
+    var response = await fetch(pURL + pMovie + imdb + poster + pApi)
+    const imageBlob = await response.blob()
+    var objectUrl = URL.createObjectURL(imageBlob);
+    document.querySelector("#moviePoster").src = objectUrl;
+
+}
+
+var IbaseURL = 'https://imdb-api.com/en/API/Trailer/k_b1yraolg/';
+
+function imdbTrailer(URL) {
+    fetch(URL)
         .then(response => response.json())
         .then(data => {
-            console.log("poster");
-            document.getElementById("moviePoster").innerHTML = JSON.stringify(data);
-        });
-
-
+            console.log(data)
+            console.log(data.link)
+        })
 }
 
-//Event Listeners//
+
 
 document.getElementById('search-button').addEventListener('click', function (event) {
     event.preventDefault();
@@ -108,3 +120,9 @@ clearButton.addEventListener("click", function () {
 })
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);
+trailerModal.addEventListener("click", function () {
+    $('#myTrailerModal').modal('show');
+})
+closeTrailer.addEventListener("click", function () {
+    $('#myTrailerModal').modal('hide')
+})
