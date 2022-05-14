@@ -2,8 +2,10 @@ var clearButton = document.querySelector("#clear-button");
 var userMovie = document.getElementById('movie-input');
 var pastSearchButtons = document.querySelector("#past-search-buttons");
 var modalContainer = document.getElementById('#myModal');
+var trailerModal = document.querySelector('.trailer');
+var closeTrailer = document.querySelector('.close-trailer');
 var movies = [];
-var pURL = "http://img.omdbapi.com/?"
+var pURL = "https://img.omdbapi.com/?"
 var pMovie = "i="
 var poster = "&h=600&"
 var pApi = "apikey=9279f439"
@@ -18,6 +20,7 @@ var formSubmitHandler = function () {
         movies.unshift({ movie });
         movie.value = "";
         pastSearch(movie);
+        callmovie
 
     } else {
         $('#myModal').modal('show');
@@ -61,7 +64,7 @@ var pastSearchHandler = function (event) {
 
 
 //fetch
-var baseURL = "http://www.omdbapi.com/?";
+var baseURL = "https://www.omdbapi.com/?";
 var api = "apikey=9279f439&"
 var movie = "t="
 // var movieTitle = "John Wick"
@@ -112,6 +115,9 @@ document.getElementById('search-button').addEventListener('click', function (eve
     formSubmitHandler();
     saveSearch();
 })
+
+
+
 
 
 clearButton.addEventListener("click", function () {
