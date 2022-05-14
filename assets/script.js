@@ -1,3 +1,59 @@
+var clearButton = document.querySelector("#clear-button");
+var userMovie = document.getElementById('movie-input');
+var pastSearchButtons = document.querySelector("#past-search-buttons");
+var modalContainer = document.getElementById('#myModal');
+var movies = [];
+
+
+//get movie, save to local storage, make buttons, otherwise show modal popup to enter movie title//
+var formSubmitHandler = function(){
+    var movie = userMovie.value.trim();
+    if(movie){
+        callMovie(movie);
+        movies.unshift({movie});
+        movie.value = "";
+        pastSearch(movie);
+
+    } else{
+        $('#myModal').modal('show'); 
+        $('ul li').remove();
+
+
+        // console.log("yay")
+    }
+    saveSearch();
+   
+}
+
+
+var saveSearch = function() {
+    localStorage.setItem("movies", JSON.stringify(movies));
+    console.log("check");
+
+};
+
+var pastSearch = function(pastSearch){
+ 
+    console.log(pastSearch)
+
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
+    pastSearchEl.setAttribute("data-movie",pastSearch)
+    pastSearchEl.setAttribute("type", "submit", "text-center");
+
+    pastSearchButtons.prepend(pastSearchEl);
+}
+
+var pastSearchHandler = function(event){
+    var movie = event.target.getAttribute("data-movie")
+    if(movie){
+        callMovie(movie);
+    }
+}
+
+
+
 //fetch
 var baseURL = "http://www.omdbapi.com/?";
 var api = "apikey=9279f439&"
@@ -7,8 +63,8 @@ function callMovie(userInput) {
     fetch(baseURL + api + movie + userInput)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            console.log(data.Actors)
+            // console.log(data)
+            // console.log(data.Actors)
             document.getElementById("list-group-item-A").innerHTML = "Movie Plot: " + JSON.stringify(data.Plot);
             document.getElementById("list-group-item-B").innerHTML = "Cast: " +JSON.stringify(data.Actors);
             document.getElementById("card-title").innerHTML = JSON.stringify(data.Title);
@@ -17,10 +73,26 @@ function callMovie(userInput) {
             document.getElementById("list-group-item-E").innerHTML = JSON.stringify(data.Ratings[2]);
         });
 }
+
+
+
+
+//Event Listeners//
+
 document.getElementById('search-button').addEventListener('click', function (event) {
     event.preventDefault();
     console.log('hello')
-    var userMovie = document.getElementById('movie-input').value;
-    console.log(userMovie);
-    callMovie(userMovie)
+    var userMovieChoice = document.getElementById('movie-input').value;
+    // console.log(userMovie);
+    callMovie(userMovieChoice)
+    formSubmitHandler();
+    saveSearch();
 })
+
+
+clearButton.addEventListener("click", function(){
+    localStorage.clear();
+    document.querySelector(".past-search").innerHTML=""
+})
+
+pastSearchButtons.addEventListener("click", pastSearchHandler);
