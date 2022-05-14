@@ -3,51 +3,54 @@ var userMovie = document.getElementById('movie-input');
 var pastSearchButtons = document.querySelector("#past-search-buttons");
 var modalContainer = document.getElementById('#myModal');
 var movies = [];
-
+var pURL = "http://img.omdbapi.com/?"
+var pMovie = "i="
+var poster = "&h=600&"
+var pApi = "apikey=9279f439"
 
 //get movie, save to local storage, make buttons, otherwise show modal popup to enter movie title//
-var formSubmitHandler = function(){
+var formSubmitHandler = function () {
     var movie = userMovie.value.trim();
-    if(movie){
+    if (movie) {
         callMovie(movie);
-        movies.unshift({movie});
+        movies.unshift({ movie });
         movie.value = "";
         pastSearch(movie);
 
-    } else{
-        $('#myModal').modal('show'); 
+    } else {
+        $('#myModal').modal('show');
         $('ul li').remove();
 
 
         // console.log("yay")
     }
     saveSearch();
-   
+
 }
 
 
-var saveSearch = function() {
+var saveSearch = function () {
     localStorage.setItem("movies", JSON.stringify(movies));
     console.log("check");
 
 };
 
-var pastSearch = function(pastSearch){
- 
+var pastSearch = function (pastSearch) {
+
     console.log(pastSearch)
 
     pastSearchEl = document.createElement("button");
     pastSearchEl.textContent = pastSearch;
     pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
-    pastSearchEl.setAttribute("data-movie",pastSearch)
+    pastSearchEl.setAttribute("data-movie", pastSearch)
     pastSearchEl.setAttribute("type", "submit", "text-center");
 
     pastSearchButtons.prepend(pastSearchEl);
 }
 
-var pastSearchHandler = function(event){
+var pastSearchHandler = function (event) {
     var movie = event.target.getAttribute("data-movie")
-    if(movie){
+    if (movie) {
         callMovie(movie);
     }
 }
@@ -66,16 +69,25 @@ function callMovie(userInput) {
             // console.log(data)
             // console.log(data.Actors)
             document.getElementById("list-group-item-A").innerHTML = "Movie Plot: " + JSON.stringify(data.Plot);
-            document.getElementById("list-group-item-B").innerHTML = "Cast: " +JSON.stringify(data.Actors);
+            document.getElementById("list-group-item-B").innerHTML = "Cast: " + JSON.stringify(data.Actors);
             document.getElementById("card-title").innerHTML = JSON.stringify(data.Title);
             document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]);
             document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]);
             document.getElementById("list-group-item-E").innerHTML = JSON.stringify(data.Ratings[2]);
+            moviePoster(data.imdbID);
         });
 }
+function moviePoster(imdb) {
+
+    fetch(pURL + pMovie + imdb + poster + pApi)
+        .then(response => response.json())
+        .then(data => {
+            console.log("poster");
+            document.getElementById("moviePoster").innerHTML = JSON.stringify(data);
+        });
 
 
-
+}
 
 //Event Listeners//
 
@@ -90,9 +102,9 @@ document.getElementById('search-button').addEventListener('click', function (eve
 })
 
 
-clearButton.addEventListener("click", function(){
+clearButton.addEventListener("click", function () {
     localStorage.clear();
-    document.querySelector(".past-search").innerHTML=""
+    document.querySelector(".past-search").innerHTML = ""
 })
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);
