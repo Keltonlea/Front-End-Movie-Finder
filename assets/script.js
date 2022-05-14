@@ -15,21 +15,24 @@ var closeTrailer = document.querySelector('.close-trailer');
 //get movie, save to local storage, make buttons, otherwise show modal popup to enter movie title//
 var formSubmitHandler = function () {
     var movie = userMovie.value.trim();
+
     if (movie) {
         callMovie(movie);
         movies.unshift({ movie });
         movie.value = "";
         pastSearch(movie);
-        callmovie
 
     } else {
         $('#myModal').modal('show');
         $('ul li').remove();
         $('#moviePoster').remove();
-        callMovie()
 
-        // console.log("yay")
-    }
+        }if (modalContainer('show') === true) {
+            callMovie(movie);
+
+        }
+
+        
     saveSearch();
 
 }
