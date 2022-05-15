@@ -80,9 +80,9 @@ function callMovie(userInput) {
             document.getElementById("list-group-item-A").innerHTML = "Movie Plot: " + JSON.stringify(data.Plot);
             document.getElementById("list-group-item-B").innerHTML = "Cast: " + JSON.stringify(data.Actors);
             document.getElementById("card-title").innerHTML = JSON.stringify(data.Title);
-            document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]);
-            document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]);
-            document.getElementById("list-group-item-E").innerHTML = JSON.stringify(data.Ratings[2]);
+            document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]).split('"')[7];
+            document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]).split('"')[7];
+            document.getElementById("list-group-item-E").innerHTML = "MetaCritic Rating: " + JSON.stringify(data.Ratings[2]).split('"')[7];
             moviePoster(data.imdbID);
             imdbTrailer(IbaseURL + data.imdbID);
         });
@@ -126,6 +126,9 @@ document.getElementById('search-button').addEventListener('click', function (eve
 clearButton.addEventListener("click", function () {
     localStorage.clear();
     document.querySelector(".past-search").innerHTML = ""
+    $("#moviePoster").remove()
+    $('ul li').remove();
+    $("#card-title").remove();
 })
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);

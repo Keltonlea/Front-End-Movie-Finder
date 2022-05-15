@@ -17,6 +17,10 @@ header h1 {
     background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
 }
 
+.bg-warning {
+margin-left: 250px;
+}
+
 #past-search-buttons {
     overflow: hidden;
 }
@@ -32,8 +36,11 @@ ul {
 #moviePoster {
     height: 500px;
     width: 500px;
-    margin-left: 375px;
-    margin-top: 10px;
+    margin-top: 10px; 
+}
+
+#moviePoster {
+    object-fit:contain;
 }
 
 #list-group-item-A {
@@ -61,8 +68,12 @@ ul {
     font-size: 22px;
 }
 
+.trailer {
+    justify-content: center;
+}
 
-@media screen and (max-width:1200px) {
+
+@media screen and (max-width:900px) {
 
     header h1 {
         justify-content: center;
@@ -73,8 +84,8 @@ ul {
     }
 
     .bg-warning {
-        width: 250% !important;
-        margin-left: -100px !important;
+        margin-left: -120px;
+        width:300% !important;
     }
 
     .btn-primary {
@@ -92,11 +103,15 @@ ul {
     #clear-button {
         width: 100% !important;
     }
+
+    #moviePoster {
+        justify-content: center;
+    }
 }
 
-@media screen and (max-width:900px) {
+/* @media screen and (max-width:600px) {
 
-    header h1 {
+    header {
         justify-content: center;
     }
 
@@ -104,10 +119,7 @@ ul {
         justify-content: center;
     }
 
-    .bg-warning {
-        width: 250% !important;
-
-    }
+    
 
     #search-button {
         width: 100% !important;
@@ -117,4 +129,36 @@ ul {
         width: 100% !important;
     }
 
+} */
+
+@media screen and (max-width:600px) {
+
+    header {
+        justify-content: center;
+    }
+
+    .container .row {
+        justify-content: center;
+    }
+
+    .bg-warning {
+       width: 380% !important;
+       margin-left: -70px !important;
+
+    }
+
+    #search-button {
+        width: 200% !important;
+    }
+
+    #clear-button {
+        width: 200% !important;
+    }
+    #movie-input {
+        width: 200% !important;
+    }
+
+    #past-search-buttons {
+        width:200%;
+    }
 }
