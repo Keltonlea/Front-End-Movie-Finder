@@ -1,7 +1,10 @@
 body {
     background-color: rgb(86, 85, 83) !important;
     text-align: center !important;
+    justify-content: center !important;
 }
+
+
 
 header h1 {
 
@@ -17,21 +20,52 @@ header h1 {
     background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
 }
 
-
-
 ul {
     list-style-type: none;
 }
 
-#card-title {
-    font-size: 200%;
+.row .col-lg-3 {
+    margin-top: 1.2%;
 }
 
-#moviePoster {
+/*movie poster card*/
+.col-md-4 {
+
     height: 500px;
     width: 500px;
     margin-left: 375px;
     margin-top: 10px;
+}
+
+
+/* .card-deck .row {
+    background-color: #ffc107 !important;
+    
+} */
+.trailer {
+    justify-content: center;
+}
+
+.card {
+    margin: 5% 0%;
+}
+
+.card-body {
+    margin: 0% 0% 0% 3%;
+    padding: 6% 0%;
+}
+
+
+/* #wrapper {
+   margin-right: 170px !important;
+  } */
+
+#past-search-buttons {
+    overflow: hidden;
+}
+
+#card-title {
+    font-size: 200%;
 }
 
 #list-group-item-A {
@@ -59,59 +93,114 @@ ul {
     font-size: 22px;
 }
 
-@media screen and (max-width:1200px) {
+#newComment {
+    background-color: #ffc107;
+}
 
-    header h1 {
-        justify-content: center;
-    }
+#addComments {
+    width: 20%;
+    padding: 5px;
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
+    align-self: center;
+}
 
-    .container .row {
-        justify-content: center;
-    }
+.wrapper>button {
+    margin-right: 5px;
+    padding: 5px;
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+}
 
-    .bg-warning {
-        width: 250% !important;
-        margin-left: -100px !important;
-    }
+textarea {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white !important;
 
-    .btn-primary {
-        width: 50% !important;
-    }
+}
 
-    #past-search-buttons {
-        width: 100%;
-    }
+.commentText {
+    background-color: #ffc107;
+    color: white;
+}
 
-    #search-button {
-        width: 100% !important;
-    }
+.saveBtn {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
 
-    #clear-button {
-        width: 100% !important;
-    }
+}
+
+.modal-content {
+    width: 177% !important;
 }
 
 @media screen and (max-width:900px) {
 
+    .col-md-4 {
+        margin-right: 200px !important;
+    }
+}
+
+@media screen and (max-width:700px) {
     header h1 {
         justify-content: center;
     }
 
-    .container .row {
+    /*movie facts card*/
+    .col-md-4 {
+        margin-top: 100px !important;
+    }
+
+    /*movies to watch card*/
+    #wrapper {
+        margin-top: 250px !important;
+    }
+
+    /*play traier button*/
+    .trailer {
+        width: 100% !important;
+    }
+
+    /*search movie card*/
+    #search-card {
+        margin-left: 170px !important;
+    }
+
+    #wrapper {
+        margin-right: 100px !important;
+    }
+
+
+}
+
+
+
+@media screen and (max-width:400px) {
+
+    header h1 {
         justify-content: center;
     }
 
-    .bg-warning {
-        width: 250% !important;
 
+    .col-md-4 {
+        margin-top: 40px !important;
     }
 
-    #search-button {
+    #wrapper {
+        margin-top: 250px !important;
+    }
+
+    .trailer {
         width: 100% !important;
     }
 
-    #clear-button {
-        width: 100% !important;
+    #search-card {
+        justify-content: center !important;
     }
-
 }
