@@ -13,6 +13,8 @@ var trailerModal = document.querySelector('.trailer');
 var closeTrailer = document.querySelector('.close-trailer');
 let searchHistory = JSON.parse(localStorage.getItem("movies")) || [];
 var iFrame = document.getElementById("myFrame");
+var clearBtnMovieList = document.querySelector('.clearSavedBtn');
+
 
 
 
@@ -162,6 +164,11 @@ $(textContent).each(function(){
   
 
 })
+
+
+
+
+
 //EVENT LISTENERS//
 
 document.getElementById('search-button').addEventListener('click', function (event) {
@@ -185,6 +192,9 @@ clearButton.addEventListener("click", function () {
 
 })
 
+clearBtnMovieList.addEventListener("click", function(){
+    textarea.value="";
+})
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);
 
@@ -196,3 +206,4 @@ trailerModal.addEventListener("click", function () {
 $(".close-trailer").click(function(){
     $('#myTrailerModal').modal('hide')
 });
+

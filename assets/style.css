@@ -24,10 +24,7 @@ ul {
     list-style-type: none;
 }
 
-/* 
-/* .card .text-white {
-margin-left: 250px;
-} */ */
+
 
 
 
@@ -57,11 +54,17 @@ margin-left: 250px;
     margin: 0% 0% 0% 3%;
     padding: 6% 0%;
   }
+
+  .row .col-lg-3 {
+      margin-top: 1%;
+  }
+
+ 
   
 
-/* #wrapper {
+#wrapper {
    margin-right: 170px !important;
-  } */
+  }
 
 #past-search-buttons {
     overflow: hidden;
