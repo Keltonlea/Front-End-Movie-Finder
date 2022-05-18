@@ -1,7 +1,10 @@
 body {
     background-color: rgb(86, 85, 83) !important;
     text-align: center !important;
+    justify-content: center !important;
 }
+
+
 
 header h1 {
 
@@ -17,30 +20,55 @@ header h1 {
     background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
 }
 
-.bg-warning {
-margin-left: 250px;
+ul {
+    list-style-type: none;
 }
+
+/* 
+/* .card .text-white {
+margin-left: 250px;
+} */ */
+
+
+
+/*movie poster card*/
+.col-md-4 {
+
+        height: 500px;
+        width: 500px;
+        margin-left: 375px;
+        margin-top: 10px;
+}
+
+
+/* .card-deck .row {
+    background-color: #ffc107 !important;
+    
+} */
+.trailer {
+    justify-content: center;
+}
+
+.card{
+    margin: 5% 0%;
+  }
+  
+.card-body{
+    margin: 0% 0% 0% 3%;
+    padding: 6% 0%;
+  }
+  
+
+/* #wrapper {
+   margin-right: 170px !important;
+  } */
 
 #past-search-buttons {
     overflow: hidden;
 }
 
-ul {
-    list-style-type: none;
-}
-
 #card-title {
     font-size: 200%;
-}
-
-#moviePoster {
-    height: 500px;
-    width: 500px;
-    margin-top: 10px; 
-}
-
-#moviePoster {
-    object-fit:contain;
 }
 
 #list-group-item-A {
@@ -67,98 +95,63 @@ ul {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
 }
-
-.trailer {
-    justify-content: center;
-}
-
-
 @media screen and (max-width:900px) {
 
+    .col-md-4 {
+        margin-right: 200px !important;
+    }
+}
+@media screen and (max-width:700px) {
     header h1 {
         justify-content: center;
     }
 
-    .container .row {
-        justify-content: center;
+    /*movie facts card*/
+    .col-md-4 {
+        margin-top: 100px !important;
     }
-
-    .bg-warning {
-        margin-left: -120px;
-        width:300% !important;
+/*movies to watch card*/
+    #wrapper {
+        margin-top: 250px !important;
     }
-
-    .btn-primary {
-        width: 50% !important;
-    }
-
-    #past-search-buttons {
-        width: 100%;
-    }
-
-    #search-button {
+/*play traier button*/
+    .trailer {
         width: 100% !important;
     }
+/*search movie card*/
+  #search-card {
+      margin-left: 170px !important;
+  }
 
-    #clear-button {
-        width: 100% !important;
-    }
+  #wrapper {
+      margin-right: 100px !important;
+  }
 
-    #moviePoster {
-        justify-content: center;
-    }
+
 }
 
-/* @media screen and (max-width:600px) {
 
-    header {
+
+@media screen and (max-width:400px) {
+
+    header h1 {
         justify-content: center;
     }
+   
 
-    .container .row {
-        justify-content: center;
+    .col-md-4 {
+        margin-top: 40px !important;
     }
 
-    
+    #wrapper {
+        margin-top: 250px !important;
+    }
 
-    #search-button {
+    .trailer {
         width: 100% !important;
     }
 
-    #clear-button {
-        width: 100% !important;
-    }
-
-} */
-
-@media screen and (max-width:600px) {
-
-    header {
-        justify-content: center;
-    }
-
-    .container .row {
-        justify-content: center;
-    }
-
-    .bg-warning {
-       width: 380% !important;
-       margin-left: -70px !important;
-
-    }
-
-    #search-button {
-        width: 200% !important;
-    }
-
-    #clear-button {
-        width: 200% !important;
-    }
-    #movie-input {
-        width: 200% !important;
-    }
-
-    #past-search-buttons {
-        width:200%;
+    #search-card {
+        justify-content: center !important;
     }
 }
