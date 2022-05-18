@@ -24,20 +24,17 @@ ul {
     list-style-type: none;
 }
 
-/* 
-/* .card .text-white {
-margin-left: 250px;
-} */ */
-
-
+.row .col-lg-3 {
+    margin-top: 1.2%;
+}
 
 /*movie poster card*/
 .col-md-4 {
 
-        height: 500px;
-        width: 500px;
-        margin-left: 375px;
-        margin-top: 10px;
+    height: 500px;
+    width: 500px;
+    margin-left: 375px;
+    margin-top: 10px;
 }
 
 
@@ -49,15 +46,15 @@ margin-left: 250px;
     justify-content: center;
 }
 
-.card{
+.card {
     margin: 5% 0%;
-  }
-  
-.card-body{
+}
+
+.card-body {
     margin: 0% 0% 0% 3%;
     padding: 6% 0%;
-  }
-  
+}
+
 
 /* #wrapper {
    margin-right: 170px !important;
@@ -95,12 +92,61 @@ margin-left: 250px;
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
 }
+
+#newComment {
+    background-color: #ffc107;
+}
+
+#addComments {
+    width: 20%;
+    padding: 5px;
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
+    align-self: center;
+}
+
+.wrapper>button {
+    margin-right: 5px;
+    padding: 5px;
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+}
+
+textarea {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white !important;
+
+}
+
+.commentText {
+    background-color: #ffc107;
+    color: white;
+}
+
+.saveBtn {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
+
+}
+
+.modal-content {
+    width: 177% !important;
+}
+
 @media screen and (max-width:900px) {
 
     .col-md-4 {
         margin-right: 200px !important;
     }
 }
+
 @media screen and (max-width:700px) {
     header h1 {
         justify-content: center;
@@ -110,22 +156,25 @@ margin-left: 250px;
     .col-md-4 {
         margin-top: 100px !important;
     }
-/*movies to watch card*/
+
+    /*movies to watch card*/
     #wrapper {
         margin-top: 250px !important;
     }
-/*play traier button*/
+
+    /*play traier button*/
     .trailer {
         width: 100% !important;
     }
-/*search movie card*/
-  #search-card {
-      margin-left: 170px !important;
-  }
 
-  #wrapper {
-      margin-right: 100px !important;
-  }
+    /*search movie card*/
+    #search-card {
+        margin-left: 170px !important;
+    }
+
+    #wrapper {
+        margin-right: 100px !important;
+    }
 
 
 }
@@ -137,7 +186,7 @@ margin-left: 250px;
     header h1 {
         justify-content: center;
     }
-   
+
 
     .col-md-4 {
         margin-top: 40px !important;
