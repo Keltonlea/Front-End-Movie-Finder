@@ -192,9 +192,19 @@ clearButton.addEventListener("click", function () {
 
 })
 
-clearBtnMovieList.addEventListener("click", function(){
-    textarea.value="";
-})
+$(".clearSavedBtn").on("click", function (){
+
+  
+    let movieList = $(this).data("film");
+    let value = $(this).siblings("textarea").val();
+    
+  
+   
+
+   
+    localStorage.remove.te(movieList, value);
+
+});
 
 pastSearchButtons.addEventListener("click", pastSearchHandler);
 
