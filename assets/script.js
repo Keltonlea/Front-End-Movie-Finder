@@ -66,16 +66,35 @@ var pastSearch = function (pastSearch) {
     pastSearchEl.setAttribute("data-movie", pastSearch)
     pastSearchEl.setAttribute("type", "submit");
     pastSearchButtons.prepend(pastSearchEl);
-
     localStorage.setItem("search", JSON.stringify(pastSearch))
     // console.log(pastSearch)
 
 
 }
+        pastSearchEl = document.createElement("button");
+        pastSearchEl.textContent = pastSearch;
+        pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
+        pastSearchEl.setAttribute("data-movie", pastSearch)
+        pastSearchEl.setAttribute("type", "submit");
+        pastSearchButtons.prepend(pastSearchEl)
+        localStorage.setItem("search", JSON.stringify(pastSearch))
+        console.log(pastSearch)
 
 
+}
 
+   
 
+   
+
+    var pastSearchHandler = function(event){
+        var movie = event.target.getAttribute("data-movie")
+        if(movie){
+            callMovie(movie)
+        }
+    }
+    
+    
 
 var pastSearchHandler = function (event) {
     var movie = event.target.getAttribute("data-movie")
@@ -123,6 +142,9 @@ function callMovie(userInput) {
                 liInnerDiv.appendChild(liElement);
                 movieRatings.appendChild(liInnerDiv);
             }
+            document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]).split('"')[7];
+            document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]).split('"')[7];
+            document.getElementById("list-group-item-E").innerHTML = "MetaCritic Rating: " + JSON.stringify(data.Ratings[2]).split('"')[7];
             moviePoster(data.imdbID, data.Poster);
             // console.log(IbaseURL + data.imdbID);
             imdbTrailer(data.imdbID)
@@ -147,6 +169,14 @@ async function moviePoster(imdb, thumbnailURL) {
     }
     // console.log(response);
     // console.log(response.status);
+        console.log("In IF condition");
+        document.querySelector("#moviePoster").src = thumbnailURL;
+    } else {
+        console.log("in ELSE Condition");
+        document.querySelector("#moviePoster").src = objectUrl;
+    }
+    console.log(response);
+    console.log(response.status);
 }
 
 
@@ -282,6 +312,8 @@ document.getElementById('search-button').addEventListener('click', function (eve
     var userMovieChoice = document.getElementById('movie-input').value;
     document.getElementById('sourceRatings').innerHTML = "";
 
+    
+
     // console.log(userMovie);
     callMovie(userMovieChoice)
     formSubmitHandler();
@@ -293,7 +325,9 @@ $(".modalBtn").click(function () {
     location.reload()
 })
 
-
+    $('#myModal').modal('hide')  ;
+    location.reload()
+})
 
 clearButton.addEventListener("click", function () {
     localStorage.clear();
@@ -316,7 +350,9 @@ $("#btnOK").click(function () {
     iFrame.setAttribute('src', '#')
 });
 
-
 document.getElementById('addComments').addEventListener("click", function (ev) {
     addComment(ev);
 });
+
+
+    
