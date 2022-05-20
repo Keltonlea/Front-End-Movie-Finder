@@ -26,7 +26,7 @@
 
 <body>
   <header class="row text-center text-white ">
-    <h1>Movie Information</h1>
+    <h1>Flicks</h1>
   </header>
 
   <main>
@@ -113,14 +113,16 @@
                   <h5 id="card-title"></h5>
                   <!--Text-->
                   <p class="card-text"></p>
-                  <ul class="list-group list-group-flush">
-                    <li id="list-group-item-A"></li>
+                  <h5 id="list-group-item-A"></h5>
+                  <h6 id="list-group-item-B"></h6>
+                  <ul class="list-group list-group-flush" id="sourceRatings">
+                    <!-- <li id="list-group-item-A"></li>
                     <li id="list-group-item-B"></li>
                     <li id="list-group-item-C"></li>
                     <li id="list-group-item-D"></li>
-                    <li id="list-group-item-E"></li>
+                    <li id="list-group-item-E"></li> -->
                   </ul>
-                  <a href="#" class="d-flex trailer btn btn-lg btn-primary my-2" style="width: 10%">Play Trailer</a>
+                  <a href="#" class="d-flex trailer btn btn-lg btn-primary my-2" style="width: 100%">Play Trailer</a>
 
                 </div>
               </div>
@@ -147,7 +149,7 @@
                 Please Enter A Movie Title
               </div>
               <div class="modal-footer">
-                <button type="button" class="modalBtn" id="pleaseClose"data-bs-dismiss="modal" >Okay</button>
+                <button type="button" class="modalBtn" id="pleaseClose" data-bs-dismiss="modal">Okay</button>
               </div>
             </div>
           </div>
@@ -165,13 +167,13 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button"  class="closeTrailer"data-bs-dismiss="modal" >Okay</button>
+                <button type="button" class="closeTrailer" data-bs-dismiss="modal" id="btnOK">Okay</button>
               </div>
             </div>
           </div>
         </div>
 
-      <!--area for comments-->
+        <!--area for comments-->
         <div class="container">
           <label for="newComment" name="newComment" style="color:white;">Add your comment below</label>
           <textarea id="newComment"></textarea>
