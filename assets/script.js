@@ -11,9 +11,13 @@ var poster = "&h=600&"
 var pApi = "apikey=9279f439"
 var trailerModal = document.querySelector('.trailer');
 var closeTrailer = document.querySelector('.close-trailer');
-let searchHistory = JSON.parse(localStorage.getItem("movies")) || [];
 var iFrame = document.getElementById("myFrame");
 var commentContainer = document.getElementById("allComments");
+var searchModalBtn = document.getElementById("pleaseClose");
+var closeTrailer = document.querySelector(".closeTrailer")
+
+
+
 
 
 
@@ -33,7 +37,7 @@ var formSubmitHandler = function () {
         callMovie(movie);
         movies.unshift({ movie });
         movie.value = "";
-
+        pastSearch(movie);
 
     } else {
         $('#myModal').modal('show');
@@ -41,34 +45,46 @@ var formSubmitHandler = function () {
         $('#moviePoster').remove();
     }
     saveSearch();
-    pastSearch(movie);
 }
+
+
 
 //Function for saving search in local storage//
 var saveSearch = function () {
 
     localStorage.setItem("movies", JSON.stringify(movies));
-    console.log("save search")
 };
+
 
 
 
 //generate movie search buttons//
 var pastSearch = function (pastSearch) {
-    for (let i = 0; i < searchHistory.length; i++) {
-
         pastSearchEl = document.createElement("button");
         pastSearchEl.textContent = pastSearch;
         pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
         pastSearchEl.setAttribute("data-movie", pastSearch)
-        pastSearchEl.setAttribute("type", "submit", "text-center");
+        pastSearchEl.setAttribute("type", "submit");
         pastSearchButtons.prepend(pastSearchEl);
-    }
+
+        localStorage.setItem("search", JSON.stringify(pastSearch))
+        console.log(pastSearch)
+
+
 }
 
+   
 
+   
 
-
+    var pastSearchHandler = function(event){
+        var movie = event.target.getAttribute("data-movie")
+        if(movie){
+            callMovie(movie)
+        }
+    }
+    
+    
 
 
 
@@ -82,7 +98,7 @@ function callMovie(userInput) {
     fetch(baseURL + api + movie + userInput)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             // console.log(data.Actors)
             document.getElementById("list-group-item-A").innerHTML = "Movie Plot: " + JSON.stringify(data.Plot);
             document.getElementById("list-group-item-B").innerHTML = "Cast: " + JSON.stringify(data.Actors);
@@ -90,8 +106,8 @@ function callMovie(userInput) {
             document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]).split('"')[7];
             document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]).split('"')[7];
             document.getElementById("list-group-item-E").innerHTML = "MetaCritic Rating: " + JSON.stringify(data.Ratings[2]).split('"')[7];
-            moviePoster(data.imdbID, data.thumbnailURL);
-            console.log(IbaseURL + data.imdbID);
+            moviePoster(data.imdbID, data.Poster);
+            // console.log(IbaseURL + data.imdbID);
             imdbTrailer(data.imdbID)
             imdbTrailer(IbaseURL + data.imdbID);
 
@@ -105,8 +121,18 @@ async function moviePoster(imdb, thumbnailURL) {
     const imageBlob = await response.blob()
     var objectUrl = URL.createObjectURL(imageBlob);
     document.querySelector("#moviePoster").src = objectUrl;
-
+    if (response.status === 404) {
+        console.log("In IF condition");
+        document.querySelector("#moviePoster").src = thumbnailURL;
+    } else {
+        console.log("in ELSE Condition");
+        document.querySelector("#moviePoster").src = objectUrl;
+    }
+    console.log(response);
+    console.log(response.status);
 }
+
+
 
 
 //Movie Trailer Function//
@@ -117,9 +143,9 @@ function imdbTrailer(id) {
     fetch(imdbURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            console.log(data.linkEmbed)
-            console.log(document.getElementById("myFrame").src)
+            // console.log(data)
+            // console.log(data.linkEmbed)
+            // console.log(document.getElementById("myFrame").src)
             iFrame.setAttribute('src', data.linkEmbed)
         })
 }
@@ -127,18 +153,13 @@ function imdbTrailer(id) {
 
 
 
-var pastSearchHandler = function (event) {
-    var movie = event.target.getAttribute("data-movie")
-    if (movie) {
-        callMovie(movie);
-    }
-}
+
 //save movies to watch to local storage // 
 $(".saveBtn").on("click", function () {
     let movieList = $(this).data("film");
     let value = $(this).siblings("textarea").val();
-    console.log(movieList);
-    console.log(value);
+    // console.log(movieList);
+    // console.log(value);
     localStorage.setItem(movieList, value);
 });
 let textContent = $(".movie-list-form textarea");
@@ -146,6 +167,15 @@ $(textContent).each(function () {
     var film = $(this).data("film");
     var description = localStorage.getItem(film);
     $(this).val(description);
+})
+
+$(".clearSavedBtn").on("click", function () {
+
+    let movieList = $(this).data("film");
+    let value = $(this).siblings("textarea").val();
+
+    localStorage.removeItem(movieList);
+    localStorage.removeItem(value);
 })
 
 function addComment(ev) {
@@ -233,11 +263,17 @@ document.getElementById('search-button').addEventListener('click', function (eve
     event.preventDefault();
 
     var userMovieChoice = document.getElementById('movie-input').value;
+    
 
     // console.log(userMovie);
     callMovie(userMovieChoice)
     formSubmitHandler();
 
+})
+
+$(".modalBtn").click(function () {
+    $('#myModal').modal('hide')  ;
+    location.reload()
 })
 
 clearButton.addEventListener("click", function () {
@@ -250,18 +286,16 @@ clearButton.addEventListener("click", function () {
 
 })
 
-
-pastSearchButtons.addEventListener("click", pastSearchHandler);
+pastSearchButtons.addEventListener("click", pastSearchHandler)
 
 trailerModal.addEventListener("click", function () {
     $('#myTrailerModal').modal('show');
 })
 
 
-$(".close-trailer").click(function () {
-    $('#myTrailerModal').modal('hide')
-});
-
 document.getElementById('addComments').addEventListener("click", function (ev) {
     addComment(ev);
 });
+
+
+    

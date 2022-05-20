@@ -1,16 +1,24 @@
 body {
-    background-color: rgb(86, 85, 83) !important;
+    /* background-color: rgb(86, 85, 83) !important; */
     text-align: center !important;
     justify-content: center !important;
+    background: url("./popcorn2.jpeg" )!important; 
+
 }
 
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
 
 
 header h1 {
 
     font-family: 'racing sans one';
     background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    opacity: .8;
 }
+
 
 .btn-primary {
 
@@ -20,22 +28,38 @@ header h1 {
     background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
 }
 
+.clearSavedBtn {
+   
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
+    justify-content: center !important;
+}
+
 ul {
     list-style-type: none;
 }
 
+.testing {
+    margin-left: 15px !important;
+}
+
+
+
 .row .col-lg-3 {
     margin-top: 1.2%;
+   
 }
 
 /*movie poster card*/
-.col-md-4 {
+/* .col-md-4 {
 
     height: 500px;
     width: 500px;
     margin-left: 375px;
     margin-top: 10px;
-}
+} */
 
 
 /* .card-deck .row {
@@ -46,19 +70,17 @@ ul {
     justify-content: center;
 }
 
+/*movies to watch card*/
 .card {
     margin: 5% 0%;
 }
 
+/*shifts body on all cards*/
 .card-body {
     margin: 0% 0% 0% 3%;
-    padding: 6% 0%;
+    padding: 6% 0%;    
 }
 
-
-/* #wrapper {
-   margin-right: 170px !important;
-  } */
 
 #past-search-buttons {
     overflow: hidden;
@@ -66,31 +88,42 @@ ul {
 
 #card-title {
     font-size: 200%;
+    color: black;
+
 }
 
 #list-group-item-A {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
+    color: black;
 }
 
 #list-group-item-B {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
+    color: black;
+
 }
 
 #list-group-item-C {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
+    color: black;
+
 }
 
 #list-group-item-D {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
+    color: black;
+
 }
 
 #list-group-item-E {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
+    color: black;
+
 }
 
 #newComment {
@@ -140,67 +173,25 @@ textarea {
     width: 177% !important;
 }
 
-@media screen and (max-width:900px) {
+/* @media screen and (max-width:900px) {
 
     .col-md-4 {
         margin-right: 200px !important;
     }
-}
+} */
 
 @media screen and (max-width:700px) {
-    header h1 {
-        justify-content: center;
-    }
-
-    /*movie facts card*/
-    .col-md-4 {
-        margin-top: 100px !important;
-    }
-
-    /*movies to watch card*/
-    #wrapper {
-        margin-top: 250px !important;
-    }
+  
 
     /*play traier button*/
     .trailer {
         width: 100% !important;
     }
 
-    /*search movie card*/
-    #search-card {
-        margin-left: 170px !important;
-    }
-
-    #wrapper {
-        margin-right: 100px !important;
-    }
 
 
 }
 
 
 
-@media screen and (max-width:400px) {
 
-    header h1 {
-        justify-content: center;
-    }
-
-
-    .col-md-4 {
-        margin-top: 40px !important;
-    }
-
-    #wrapper {
-        margin-top: 250px !important;
-    }
-
-    .trailer {
-        width: 100% !important;
-    }
-
-    #search-card {
-        justify-content: center !important;
-    }
-}
