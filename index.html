@@ -18,12 +18,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
   </style>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
 <body>
   <header class="row text-center text-white ">
-    <h1>Movie Information</h1>
+    <h1>Flicks</h1>
   </header>
 
   <main>
@@ -48,14 +51,16 @@
                 <input class="form-control my-2 text-primary" type="search" placeholder="Search" id="movie-input">
                 <button class="d-flex justify-content-center btn btn-lg btn-primary my-2" style="width: 100%"
                   type="submit" id="search-button">Search</button>
-                <button class="d-flex justify-content-center btn btn-lg btn-primary my-2" style="width: 100%"
-                  type="submit" id="clear-button">Clear History</button>
-                <div id="past-search-buttons" class="past-search">
+                <div>
+                  <button class="d-flex justify-content-center btn btn-lg btn-primary my-2" style="width: 100%"
+                    type="submit" id="clear-button">Clear History</button>
                 </div>
               </form>
+              <div id="past-search-buttons" class="past-search"></div>
+
             </div>
           </div>
-          <div class="card text-white bg-warning mb-3" style="width: 18rem;">
+          <div class="card text-white bg-warning mb-3 testing" style="width: 18rem;">
             <div class="card-header">
               <label class="text-primary">Movies To Watch:</label>
             </div>
@@ -83,7 +88,7 @@
                   <textarea class="form-control form-control-sm" data-film="4" type="text"
                     placeholder="enter movie title"></textarea>
                   <button class="saveBtn" data-film="4"> save </button>
-                  <button class="ClearSavedBtn" data-film="4"> clear</button>
+                  <button class="clearSavedBtn" data-film="4"> clear</button>
                 </div>
                 <div>
                   <textarea class="form-control form-control-sm" data-film="5" type="text"
@@ -108,94 +113,43 @@
                   <h5 id="card-title"></h5>
                   <!--Text-->
                   <p class="card-text"></p>
-                  <ul class="list-group list-group-flush">
-                    <li id="list-group-item-A"></li>
+                  <h5 id="list-group-item-A"></h5>
+                  <h6 id="list-group-item-B"></h6>
+                  <ul class="list-group list-group-flush" id="sourceRatings">
+                    <!-- <li id="list-group-item-A"></li>
                     <li id="list-group-item-B"></li>
                     <li id="list-group-item-C"></li>
                     <li id="list-group-item-D"></li>
-                    <li id="list-group-item-E"></li>
+                    <li id="list-group-item-E"></li> -->
                   </ul>
-                  <a href="#" class="d-flex trailer btn btn-lg btn-primary my-2" style="width: 10%">Play Trailer</a>
+                  <a href="#" class="d-flex trailer btn btn-lg btn-primary my-2" style="width: 100%">Play Trailer</a>
 
                 </div>
               </div>
             </div>
           </div>
-          <!--trying to close row -->
 
 
-          <!--card for movies to watch-->
-          <!-- <div id= wrapper class="card text-white bg-warning me-3 mb-3 mx-auto" style="max-width: 18rem; ">
-          <div class="card-header text-primary">Movies To Watch</div>
-          <div class="card-body">
-            <textarea class="watchMovie"> </textarea>
-            <button class="col my-col col-b3 saveBtn" data-hour="9" > save </button> 
-            <button class="col my-col col-b3 saveBtn" data-hour="9" > remove </button>
-
-            
-
-          </div>
-        <!-- </div> -->
-          <!-- <div class="row">
-            <!-- <div id=movies-to-watch-card class="card mx-auto text-white bg-warning mb-3" style="max-width: 18rem;">
-              <div class="card-header">
-                <label class="text-primary">Movies To Watch:</label>
-
-              </div>
-
-              <div class="card-body">
-                <form class="movie-list-form">
-                  <textarea class="form-control form-control-sm" data-film="1" type="text"
-                    placeholder="enter movie title"></textarea>
-
-                  <button class="saveBtn" data-film="1"> save </button>
-
-                  <textarea class="form-control form-control-sm" data-film="2" type="text"
-                    placeholder="enter movie title"></textarea>
-
-                  <button class="saveBtn" data-film="2"> save </button>
-
-                  <textarea class="form-control form-control-sm" data-film="3" type="text"
-                    placeholder="enter movie title"></textarea>
-
-                  <button class="saveBtn" data-film="3"> save </button>
-
-                  <textarea class="form-control form-control-sm" data-film="4" type="text"
-                    placeholder="enter movie title"></textarea>
-
-                  <button class="saveBtn" data-film="4"> save </button>
-
-                  <textarea class="form-control form-control-sm" data-film="5" type="text"
-                    placeholder="enter movie title"></textarea>
-
-                  <button class="saveBtn" data-film="5"> save </button>
-              </div>
-            </div> -->
-
-
-
-
-
-          <!-- </form>
-          </div> -->
         </div>
 
 
 
 
         <!--modal for 'please enter movie title' alert-->
+
+
+
         <div class="modal fade" id="myModal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="title">OOPS</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 Please Enter A Movie Title
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay</button>
+                <button type="button" class="modalBtn" id="pleaseClose" data-bs-dismiss="modal">Okay</button>
               </div>
             </div>
           </div>
@@ -213,12 +167,13 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay</button>
+                <button type="button" class="closeTrailer" data-bs-dismiss="modal" id="btnOK">Okay</button>
               </div>
             </div>
           </div>
         </div>
 
+        <!--area for comments-->
         <div class="container">
           <label for="newComment" name="newComment" style="color:white;">Add your comment below</label>
           <textarea id="newComment"></textarea>

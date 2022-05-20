@@ -27,4 +27,7 @@ document.getElementById('search-button').addEventListener('click', function (eve
     var userMovie = document.getElementById('movie-input').value;
     console.log(userMovie);
     callMovie(userMovie)
-}) 
+})
+
+
+
