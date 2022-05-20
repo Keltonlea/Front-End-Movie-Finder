@@ -34,7 +34,7 @@ var formSubmitHandler = function () {
     var movie = userMovie.value.trim();
 
     if (movie) {
-        callMovie(movie);
+        // callMovie(movie);
         movies.unshift({ movie });
         movie.value = "";
         pastSearch(movie);
@@ -60,31 +60,31 @@ var saveSearch = function () {
 
 //generate movie search buttons//
 var pastSearch = function (pastSearch) {
-        pastSearchEl = document.createElement("button");
-        pastSearchEl.textContent = pastSearch;
-        pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
-        pastSearchEl.setAttribute("data-movie", pastSearch)
-        pastSearchEl.setAttribute("type", "submit");
-        pastSearchButtons.prepend(pastSearchEl);
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    pastSearchEl.classList = "d-flex w-100 btn-primary border p-2";
+    pastSearchEl.setAttribute("data-movie", pastSearch)
+    pastSearchEl.setAttribute("type", "submit");
+    pastSearchButtons.prepend(pastSearchEl);
 
-        localStorage.setItem("search", JSON.stringify(pastSearch))
-        console.log(pastSearch)
+    localStorage.setItem("search", JSON.stringify(pastSearch))
+    // console.log(pastSearch)
 
 
 }
 
-   
 
-   
 
-    var pastSearchHandler = function(event){
-        var movie = event.target.getAttribute("data-movie")
-        if(movie){
-            callMovie(movie)
-        }
+
+
+var pastSearchHandler = function (event) {
+    var movie = event.target.getAttribute("data-movie")
+    if (movie) {
+        callMovie(movie)
     }
-    
-    
+}
+
+
 
 
 
@@ -95,6 +95,8 @@ function callMovie(userInput) {
     var baseURL = "https://www.omdbapi.com/?";
     var api = "apikey=9279f439&"
     var movie = "t="
+    var movieRatings = document.getElementById("sourceRatings");
+
     fetch(baseURL + api + movie + userInput)
         .then(response => response.json())
         .then(data => {
@@ -103,9 +105,24 @@ function callMovie(userInput) {
             document.getElementById("list-group-item-A").innerHTML = "Movie Plot: " + JSON.stringify(data.Plot);
             document.getElementById("list-group-item-B").innerHTML = "Cast: " + JSON.stringify(data.Actors);
             document.getElementById("card-title").innerHTML = JSON.stringify(data.Title);
-            document.getElementById("list-group-item-C").innerHTML = "Internet Movie Database Rating: " + JSON.stringify(data.Ratings[0]).split('"')[7];
-            document.getElementById("list-group-item-D").innerHTML = "Rotten Tomatoes Rating: " + JSON.stringify(data.Ratings[1]).split('"')[7];
-            document.getElementById("list-group-item-E").innerHTML = "MetaCritic Rating: " + JSON.stringify(data.Ratings[2]).split('"')[7];
+            var ratings = data.Ratings
+            for (let i = 0; i < ratings.length; i++) {
+                // console.log(ratings[i]);
+                var liElement = document.createElement("li");
+                liElement.setAttribute("class", 'ratings');
+                var liInnerDiv = document.createElement("div");
+                liInnerDiv.setAttribute("class", 'liDiv');
+                var liSpanSource = document.createElement("span");
+                liSpanSource.setAttribute("class", 'span');
+                var liSpanValue = document.createElement("span");
+                liSpanValue.setAttribute("class", 'span');
+                liSpanSource.innerHTML = ratings[i].Source + ": ";
+                liSpanValue.innerHTML = ratings[i].Value;
+
+                liElement.append(liSpanSource, liSpanValue);
+                liInnerDiv.appendChild(liElement);
+                movieRatings.appendChild(liInnerDiv);
+            }
             moviePoster(data.imdbID, data.Poster);
             // console.log(IbaseURL + data.imdbID);
             imdbTrailer(data.imdbID)
@@ -122,14 +139,14 @@ async function moviePoster(imdb, thumbnailURL) {
     var objectUrl = URL.createObjectURL(imageBlob);
     document.querySelector("#moviePoster").src = objectUrl;
     if (response.status === 404) {
-        console.log("In IF condition");
+
         document.querySelector("#moviePoster").src = thumbnailURL;
     } else {
-        console.log("in ELSE Condition");
+
         document.querySelector("#moviePoster").src = objectUrl;
     }
-    console.log(response);
-    console.log(response.status);
+    // console.log(response);
+    // console.log(response.status);
 }
 
 
@@ -263,7 +280,7 @@ document.getElementById('search-button').addEventListener('click', function (eve
     event.preventDefault();
 
     var userMovieChoice = document.getElementById('movie-input').value;
-    
+    document.getElementById('sourceRatings').innerHTML = "";
 
     // console.log(userMovie);
     callMovie(userMovieChoice)
@@ -272,9 +289,11 @@ document.getElementById('search-button').addEventListener('click', function (eve
 })
 
 $(".modalBtn").click(function () {
-    $('#myModal').modal('hide')  ;
+    $('#myModal').modal('hide');
     location.reload()
 })
+
+
 
 clearButton.addEventListener("click", function () {
     localStorage.clear();
@@ -292,10 +311,13 @@ trailerModal.addEventListener("click", function () {
     $('#myTrailerModal').modal('show');
 })
 
+$("#btnOK").click(function () {
+    $('#myTrailerModal').modal('hide')
+    iFrame.setAttribute('src', '#')
+});
+
 
 document.getElementById('addComments').addEventListener("click", function (ev) {
     addComment(ev);
 });
-
-
     
