@@ -1,9 +1,9 @@
+
 body {
     /* background-color: rgb(86, 85, 83) !important; */
     text-align: center !important;
     justify-content: center !important;
     background: url("./popcorn2.jpeg") !important;
-
 }
 
 .container {
@@ -19,7 +19,18 @@ header h1 {
     opacity: .8;
 }
 
+ul {
+    list-style-type: none;
+}
 
+textarea {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white !important;
+
+}
+/* CLASSES*/
 .btn-primary {
 
     display: flex;
@@ -37,32 +48,17 @@ header h1 {
     justify-content: center !important;
 }
 
-ul {
-    list-style-type: none;
+.saveBtn {
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+    color: white;
 }
 
-.testing {
-    margin-left: 15px !important;
-}
-
-
-
+/*shifts row down so level with poster card*/
 .row .col-lg-3 {
     margin-top: 1.2%;
 
-}
-
-#myModal {
-    color: black;
-    width: 40%;
-}
-
-.modalBtn {
-    margin-right: 700px !important;
-}
-
-.modal-body {
-    margin-right: 200px !important;
 }
 
 .trailer {
@@ -72,6 +68,7 @@ ul {
 /*movies to watch card*/
 .card {
     margin: 5% 0%;
+    margin-left: 15px !important;
 }
 
 /*shifts body on all cards*/
@@ -80,11 +77,34 @@ ul {
     padding: 6% 0%;
 }
 
-
-#past-search-buttons {
-    overflow: hidden;
+.commentText {
+    background-color: #ffc107;
+    color: white;
 }
 
+
+
+.modal-content {
+    width: 177% !important;
+    justify-content: center !important;
+
+}
+
+
+
+.wrapper>button {
+    margin-right: 5px;
+    padding: 5px;
+    border-color: rgb(246, 93, 11) !important;
+    font-family: 'racing sans one';
+    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+}
+
+/*IDs*/
+
+#btnOK {
+    justify-content: left !important;
+}
 #card-title {
     font-size: 200%;
     color: black;
@@ -125,43 +145,39 @@ ul {
     align-self: center;
 }
 
-.wrapper>button {
-    margin-right: 5px;
-    padding: 5px;
-    border-color: rgb(246, 93, 11) !important;
-    font-family: 'racing sans one';
-    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
+#past-search-buttons {
+    overflow: hidden;
 }
 
-textarea {
-    border-color: rgb(246, 93, 11) !important;
-    font-family: 'racing sans one';
-    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
-    color: white !important;
-
+#myModal {
+    color: black;
 }
 
-.commentText {
-    background-color: #ffc107;
-    color: white;
-}
 
-.saveBtn {
-    border-color: rgb(246, 93, 11) !important;
-    font-family: 'racing sans one';
-    background-image: linear-gradient(to right, rgb(230, 153, 82), rgb(237, 97, 9));
-    color: white;
+.iframe-container {
+    position:relative;
+    width:100%;
+    padding-bottom: 50%;
+    height:0
+
+}
+iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
 
 }
 
-.modal-content {
-    width: 177% !important;
-}
-
+/*MEDIA QUERY*/
 
 
 @media screen and (min-width: 995px) {
     .col-lg-6 {
         margin-left: 80px !important;
     }
+
+    
 }
+

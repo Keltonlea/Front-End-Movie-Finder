@@ -1,29 +1,21 @@
-var clearButton = document.querySelector("#clear-button");
 var userMovie = document.getElementById('movie-input');
 var pastSearchButtons = document.querySelector("#past-search-buttons");
 var modalContainer = document.getElementById('#myModal');
+var clearButton = document.querySelector("#clear-button");
 var trailerModal = document.querySelector('.trailer');
 var closeTrailer = document.querySelector('.close-trailer');
-var movies = [];
-var pURL = "https://img.omdbapi.com/?"
-var pMovie = "i="
-var poster = "&h=600&"
-var pApi = "apikey=9279f439"
 var trailerModal = document.querySelector('.trailer');
 var closeTrailer = document.querySelector('.close-trailer');
 var iFrame = document.getElementById("myFrame");
 var commentContainer = document.getElementById("allComments");
 var searchModalBtn = document.getElementById("pleaseClose");
 var closeTrailer = document.querySelector(".closeTrailer")
-
-
-
-
-
-
-
-
-
+var movies = [];
+var pURL = "https://img.omdbapi.com/?"
+var pMovie = "i="
+var poster = "&h=600&"
+var pApi = "apikey=9279f439"
+var addComments = []
 
 
 
@@ -35,8 +27,8 @@ var formSubmitHandler = function () {
 
     if (movie) {
         // callMovie(movie);
-        movies.unshift({ movie });
-        movie.value = "";
+        // movies.unshift({ movie });
+        // movie.value = "";
         pastSearch(movie);
 
     } else {
@@ -70,7 +62,6 @@ var pastSearch = function (pastSearch) {
     localStorage.setItem("search", JSON.stringify(pastSearch))
     // console.log(pastSearch)
 
-
 }
 
 
@@ -85,11 +76,7 @@ var pastSearchHandler = function (event) {
 }
 
 
-
-
-
-
-//fetch
+//fetch movie Facts
 
 function callMovie(userInput) {
     var baseURL = "https://www.omdbapi.com/?";
@@ -171,29 +158,7 @@ function imdbTrailer(id) {
 
 
 
-//save movies to watch to local storage // 
-$(".saveBtn").on("click", function () {
-    let movieList = $(this).data("film");
-    let value = $(this).siblings("textarea").val();
-    // console.log(movieList);
-    // console.log(value);
-    localStorage.setItem(movieList, value);
-});
-let textContent = $(".movie-list-form textarea");
-$(textContent).each(function () {
-    var film = $(this).data("film");
-    var description = localStorage.getItem(film);
-    $(this).val(description);
-})
 
-$(".clearSavedBtn").on("click", function () {
-
-    let movieList = $(this).data("film");
-    let value = $(this).siblings("textarea").val();
-
-    localStorage.removeItem(movieList);
-    localStorage.removeItem(value);
-})
 
 function addComment(ev) {
     let commentText;
@@ -226,14 +191,6 @@ function addComment(ev) {
     }
 
 
-    // const wrapDiv = document.createElement("div");
-    // wrapDiv.className = "wrapper";
-    // wrapDiv.style.marginLeft = 0;
-    // commentText = document.getElementById("newComment").value;
-    // document.getElementById("newComment").value = '';
-    // textBox.innerHTML = commentText;
-    // wrapDiv.append(textBox, replyButton, likeButton, deleteButton);
-    // commentContainer.appendChild(wrapDiv);
     setOnLocalStorage();
 }
 function hasClass(elem, className) {
@@ -268,9 +225,12 @@ document.getElementById('allComments').addEventListener('click', function (e) {
     setOnLocalStorage();
 });
 function setOnLocalStorage() {
+
     localStorage.setItem('template', document.getElementById('allComments').innerHTML);
+    console.log("saved")
 }
-//save movies to watch to local storage // 
+
+
 
 
 
@@ -307,17 +267,45 @@ clearButton.addEventListener("click", function () {
 
 pastSearchButtons.addEventListener("click", pastSearchHandler)
 
-trailerModal.addEventListener("click", function () {
-    $('#myTrailerModal').modal('show');
-})
 
-$("#btnOK").click(function () {
-    $('#myTrailerModal').modal('hide')
-    iFrame.setAttribute('src', '#')
-});
+trailerModal.addEventListener("click", function(){
+
+    $('#myTrailerModal').modal('show');
+
+    })
+
+    $('#myTrailerModal').on('hide.bs.modal', function() {
+        var memory = $(this).html();
+        $(this).html(memory);
+   });
 
 
 document.getElementById('addComments').addEventListener("click", function (ev) {
     addComment(ev);
+    ev.preventDefault();
+
 });
-    
+
+ //save 'movies to watch' to local storage and keep them on page after refresh // 
+$(".saveBtn").on("click", function () {
+    let movieList = $(this).data("film");
+    let value = $(this).siblings("textarea").val();
+    // console.log(movieList);
+    // console.log(value);
+    localStorage.setItem(movieList, value);
+});
+let textContent = $(".movie-list-form textarea");
+$(textContent).each(function () {
+    var film = $(this).data("film");
+    var description = localStorage.getItem(film);
+    $(this).val(description);
+})
+//clear 'movies to watch' buttons//
+$(".clearSavedBtn").on("click", function () {
+
+    let movieList = $(this).data("film");
+    let value = $(this).siblings("textarea").val();
+
+    localStorage.removeItem(movieList);
+    localStorage.removeItem(value);
+})
