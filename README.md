@@ -38,7 +38,7 @@ As a group we want a site that displays relevant movie information so we can dec
 
 https://keltonlea.github.io/Project-1/
 
-![Homework 1 Screenshot](./assets/homework-6-screenshot.png?raw=true "Flicks, Project-1")
+![Homework 1 Screenshot](./assets/project-1-screenshot.png?raw=true "Flicks, Project-1")
 
   ## Built With 
 * JavaScript
